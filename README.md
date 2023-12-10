@@ -7,4 +7,4 @@ Feel free to contribute by suggesting improvements, fixing bugs, or addressing a
 
 If you find the content helpful or interesting, please consider giving the repository a star on GitHub. 🌟
 
-Challenges Covered
+# Challenges Covered
