@@ -10,7 +10,8 @@ var (command, param) = args.Length switch
 
 
 DecodeEncode(param);
- void DecodeEncode(dynamic encodedValue) //l5:helloi52ee
+
+(string, string) DecodeEncode(dynamic encodedValue) //l5:helloi52ee
 {
     // Parse command and act accordingly
     if (command == "decode")
@@ -26,31 +27,41 @@ DecodeEncode(param);
 
         if (Char.IsDigit(encodedValue[0]))
         {
-            var (value, _) = DecodeString(encodedValue);
-            Console.WriteLine("Decode String: " + value);
+            var (value, remainder) = DecodeString(encodedValue);
+            return ((value, remainder));
         }
         else if (encodedValue[0] == 'i')
         {
-            var (value, _) = DecodeNumber(encodedValue);
-            Console.WriteLine("Decode number: " + value);
-
+            var (value, remainder) = DecodeNumber(encodedValue);
+            return ((value, remainder));
         }
         else if (encodedValue[0] == 'l')
         {
-            var (value, _) = DecodeList(encodedValue);
+            var (value, remainder) = DecodeList(encodedValue);
             foreach (var item in value)
             {
-                Console.WriteLine("Decode list: " + item);
-
+                Console.WriteLine("Decode list: " + JsonSerializer.Serialize(item));
             }
 
+            return ((value.ToString()!, remainder));
+        }
+        else if (encodedValue[0] == 'd')
+        {
+            var value = DecodeDictionary(encodedValue);
+            foreach (var item in value)
+            {
+                Console.WriteLine("Dict list: " + JsonSerializer.Serialize(item.Key)  + "=> " + JsonSerializer.Serialize(item.Value));
+            }
+
+            return ((value.ToList().ToString()!, null!));
         }
 
     }
+        return (null!, null!);
 }
 
 
-    (string value, string rest) DecodeString(string encodedValue)
+(string value, string rest) DecodeString(string encodedValue)
 {
     var colonIndex = encodedValue.IndexOf(':');
     if (colonIndex != -1)
@@ -58,7 +69,7 @@ DecodeEncode(param);
         var strLength = int.Parse(encodedValue[..colonIndex]);
         var strValue = encodedValue.Substring(colonIndex + 1, strLength);
         string restString;
-        Console.WriteLine(JsonSerializer.Serialize(strValue));
+        //Console.WriteLine(JsonSerializer.Serialize(strValue));
 
         if (strValue.Length + 2 < encodedValue.Length)
         {
@@ -67,9 +78,7 @@ DecodeEncode(param);
         }
 
         return (strValue, null!);
-
     }
-
 
 
     else
@@ -104,43 +113,39 @@ DecodeEncode(param);
 (List<string> values, string rest) DecodeList(string encodedValue)
 {
     var items = new List<string>();
-    string restOfstring = string.Empty;
 
 
+    var restOfString = encodedValue[1..^1];
 
-    if (!encodedValue.StartsWith('e'))
+    while (!string.IsNullOrEmpty(restOfString) && !restOfString.StartsWith('e'))
     {
-        var colonIndex = encodedValue.IndexOf(':');
-        if (colonIndex == -1)
-            return (Enumerable.Empty<string>().ToList(), string.Empty);
-
-        var value = encodedValue[1..colonIndex];
-        var strLength = int.Parse(value.ToString());
-        var strValue = encodedValue.Substring(colonIndex + 1, strLength);
-        items.Add(strValue);
-        var restString = encodedValue.Substring(strValue.Length + colonIndex + 1);
-
-        restString = restString.Remove(restString.Length - 1);
-        while (!string.IsNullOrEmpty(restString) && !restString.StartsWith('e'))
-        {
-            if (restString.StartsWith('i'))
-            {
-                var (val, rest) = DecodeNumber(restString);
-                restString = rest;
-                items.Add(val);
-            }
-            else if (Char.IsDigit(restString[0]))
-            {
-                var (val, rest) = DecodeString(restString);
-                restString = rest;
-                items.Add(val);
-            }
-        }
-
-        return (items, restOfstring);
-
+        var (value, rest) = DecodeEncode(restOfString);
+        items.Add(value);
+        restOfString = rest;
     }
 
-    return (items, null!);
+    return (items, restOfString);
 }
+
+Dictionary<string, string> DecodeDictionary(string encodedValue)
+{
+    //try to split the string with :d3:foo3:bar5:helloi52ee
+
+    var items = new Dictionary<string, string>();
+
+
+    var restOfString = encodedValue[1..^1];
+
+    while (!string.IsNullOrEmpty(restOfString) && !restOfString.StartsWith('e'))
+    {
+        var (key, rest) = DecodeEncode(restOfString);
+        var (value, reminder) = DecodeEncode(rest);
+        items.Add(key, value);
+        restOfString = reminder;
+    }
+
+    return items;
+}
+
+
 
