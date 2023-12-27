@@ -7,3 +7,13 @@ edition = "2021"
 
 [dependencies]
 serde_json = "1.0.1"
+serde = "1.0.193"
+reqwest = "0.11.23"                                         # http requests
+bytes = "1.3.0"                                                    # helps wrap responses from reqwest
+serde_urlencoded = "0.7.1"                                         # for url encoding
+serde_bencode = "0.2.3"                                            # for bencode encoding/decoding
+sha1 = "0.10.1"                                                    # hashing
+tempfile = "3"                                                     # creating temporary directories
+thiserror = "1.0.38"                                               # error handling
+tokio = { version = "1.23.0", features = ["full"] }
+anyhow = "1.0.76"                # async http requests

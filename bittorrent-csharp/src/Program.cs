@@ -1,3 +1,4 @@
+using System.Security.Cryptography;
 using System.Text.Json;
 
 // Parse arguments
@@ -45,19 +46,20 @@ DecodeEncode(param);
 
             return ((value.ToString()!, remainder));
         }
-        else if (encodedValue[0] == 'd')
+         if (encodedValue[0] == 'd')
         {
             var value = DecodeDictionary(encodedValue);
             foreach (var item in value)
             {
-                Console.WriteLine("Dict list: " + JsonSerializer.Serialize(item.Key)  + "=> " + JsonSerializer.Serialize(item.Value));
+                Console.WriteLine("Dict list: " + JsonSerializer.Serialize(item.Key) + "=> " +
+                                  JsonSerializer.Serialize(item.Value));
             }
 
             return ((value.ToList().ToString()!, null!));
         }
-
     }
-        return (null!, null!);
+
+    return (null!, null!);
 }
 
 
@@ -129,7 +131,7 @@ DecodeEncode(param);
 
 Dictionary<string, string> DecodeDictionary(string encodedValue)
 {
-    //try to split the string with :d3:foo3:bar5:helloi52ee
+    //try to split the string with : d3:foo3:bar5:helloi52ee
 
     var items = new Dictionary<string, string>();
 
@@ -147,5 +149,43 @@ Dictionary<string, string> DecodeDictionary(string encodedValue)
     return items;
 }
 
+// Goal : Take file and print the information about torrent.
+/*
+ * Input : Get The File name form CMD,  [ info sample.torrent ]
+ * Procsess : Find File , Read Data and parsed.
+ * output : Tracker URl , Length .
+ *  { Tracker URL: http://bittorrent-test-tracker.codecrafters.io/announce
+        Length: 92063 }
+ * ****
+ * File :-
+ *  Announce : URL Tracker.
+ * Info : [ keys and values ]: {
+ *  * name : suggested name to save the file / directory as
+ *  * Length : size of the file in bytes, for single-file torrents
+ *  * Piece (Length Piece ) :  number of bytes in each piece
+ *  * Pieces : concatenated SHA-1 hashes of each piece
+ * }
+ */
 
+Dictionary<string, string> ParseFile(string filename)
+{
+    var result = new Dictionary<string, string>();
+    var te = $"C:\\Users\\obai\\source\\repos\\PlayWithString\\PlayWithString\\{filename}";
+   // filename = "\\PlayWithString\\sample.torrent";
+    string data = String.Empty;
+    using FileStream file = new FileStream(te, FileMode.Open, FileAccess.Read);
+    using (StreamReader reader = new StreamReader(file))
+    {
+        data = reader.ReadToEnd();
+    }
+    // Decode the torrent data
+    var (key, rest) = DecodeEncode(data);
 
+    // Construct Torrent record
+    var torrent = new Torrent(result["announce"], new Info(result["name"], long.Parse(result["length"]), long.Parse(result["piece length"]), result["pieces"]));
+
+    return result;
+}
+
+record Torrent(string announce, Info info) { }
+record Info(string name, long length, long Piece, string Piceces);
