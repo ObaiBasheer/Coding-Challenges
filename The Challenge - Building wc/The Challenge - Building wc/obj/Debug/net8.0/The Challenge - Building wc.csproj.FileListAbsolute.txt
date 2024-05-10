@@ -1,0 +1,17 @@
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\bin\Debug\net8.0\The Challenge - Building wc.exe
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\bin\Debug\net8.0\The Challenge - Building wc.deps.json
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\bin\Debug\net8.0\The Challenge - Building wc.runtimeconfig.json
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\bin\Debug\net8.0\The Challenge - Building wc.dll
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\bin\Debug\net8.0\The Challenge - Building wc.pdb
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.AssemblyInfoInputs.cache
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.AssemblyInfo.cs
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.csproj.CoreCompileInputs.cache
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.dll
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\refint\The Challenge - Building wc.dll
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.pdb
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.genruntimeconfig.cache
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\ref\The Challenge - Building wc.dll
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\bin\Debug\net8.0\Spectre.Console.dll
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Challenge - Building wc.csproj.AssemblyReference.cache
+C:\Users\ObyB\source\repos\Coding Challenges\The Challenge - Building wc\The Challenge - Building wc\obj\Debug\net8.0\The Chal.BBC62C54.Up2Date

@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "1tMrlE69YkT3HmDB2xEgMWdZwOE3XVgFewbnYuU2FNEoot55Wi2gs3dgunyUxUp15BPZvXu9wg/VI1SYOk3fgw==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\ObyB\\source\\repos\\Coding Challenges\\The Challenge - Building wc\\The Challenge - Building wc\\The Challenge - Building wc.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\ObyB\\.nuget\\packages\\spectre.console\\0.47.0\\spectre.console.0.47.0.nupkg.sha512",
+    "C:\\Users\\ObyB\\.nuget\\packages\\system.memory\\4.5.5\\system.memory.4.5.5.nupkg.sha512"
+  ],
+  "logs": []
+}
